@@ -1,0 +1,30 @@
+CampPro/
+│
+├── models/                 # Mongoose models for database schemas
+│   ├── product.js          # Product model
+│   ├── user.js             # User model
+│   ├── admin.js            # Admin model
+│   └── cart.js             # Cart model
+│
+├── routes/                 # Express routes for handling API endpoints
+│   ├── productRoutes.js    # Routes for products
+│   ├── userRoutes.js       # Routes for user accounts
+│   ├── adminRoutes.js      # Routes for admin accounts
+│   └── cartRoutes.js       # Routes for managing the shopping cart
+│
+├── views/                  # EJS templates for rendering pages
+│   ├── index.ejs           # Home page
+│
+├── public/                 # Static files (CSS, JS, Images)
+│   ├── css/                # CSS files
+│   │   └── styles.css      # Main stylesheet
+│   ├── js/                 # JavaScript files
+│   │   └── scripts.js      # Custom scripts
+│   └── images/             # Static images
+│       
+│
+├── .env                    # Environment variables
+├── app.js                  # Main application file
+├── package.json            # NPM package file
+├── README.md               # Documentation
+└── .gitignore              # Git ignore file

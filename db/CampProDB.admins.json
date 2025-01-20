@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "676394fbb7cecd2f184c51de"
+  },
+  "username": "Mohamed Ali Inouri",
+  "password": "$2b$10$WYg3HKBBNRTqn2HFsxjlI.NaLQHfKgsqy.nNM5cD/M0JEsCgV9xZy",
+  "email": "mohamed.ali.inouri@gmail.com",
+  "__v": 0
+}]

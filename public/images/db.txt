@@ -1,0 +1,56 @@
+-- Create database
+CREATE DATABASE CampProDB;
+
+-- Use the database
+USE CampProDB;
+
+-- Create Products Table
+CREATE TABLE Products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    gender ENUM('Unisex', 'Male', 'Female') NOT NULL,
+    age ENUM('Kids', 'Adults', 'All Ages') NOT NULL,
+    type ENUM(
+        'Tent (with stakes and guylines)',
+        'Sleeping Bag (appropriate for the season)',
+        'Sleeping Pad or Air Mattress',
+        'Camping Stove (with fuel) & Cookware (pots, pans, utensils)',
+        'Water Filter or Water Purification Tablets',
+        'Headlamp or Flashlight (with extra batteries)',
+        'First Aid Kit',
+        'Sturdy Hiking Boots or Shoes',
+        'Weather-Appropriate Clothing (layers, including a waterproof jacket and warm layers)',
+        'Sunscreen and Insect Repellent',
+        'Camping Clothes'
+    ) NOT NULL,
+    image VARCHAR(255) NOT NULL
+);
+
+-- Create Admin Table
+CREATE TABLE Admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Create User Table
+CREATE TABLE Users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Create Cart Table
+CREATE TABLE Cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
+);

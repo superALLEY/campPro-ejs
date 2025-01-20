@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/jpeg" href="camp-pro-logo.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Product - Camp Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Icons -->
+    <style>
+        /* Copy styles from add-product.php */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f4f4f4;
+            background: url('/images/contact.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: rgba(255, 223, 0, 0.9);
+            border-bottom: 2px solid rgba(255, 200, 0, 0.7);
+            padding: 15px 30px;
+            z-index: 10;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .welcome-container .welcome {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .welcome-container i {
+            font-size: 24px;
+            color: #000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: 600;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ff5722;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+        .form-container input, .form-container select, .form-container textarea {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container input:focus, .form-container select:focus, .form-container textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-container button {
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .return-btn {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            background: #ffd700;
+            color: #000;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        .return-btn:hover {
+            background: #ffcc00;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="welcome-container">
+            <i class="fas fa-user-circle"></i>
+            <span class="welcome">Welcome, Admin: <?php echo htmlspecialchars($adminName); ?></span>
+        </div>
+        <div class="navbar">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/admin"><i class="fas fa-box"></i> Products</a>
+            <a href="/admin/users"><i class="fas fa-users"></i> Users</a>
+        </div>
+    </div>
+    
+
+    <div class="form-container">
+        <h1>Modify Product</h1>
+        <% if (message) { %>
+            <p class="<%= message.type %>"><%= message.text %></p>
+        <% } %>
+        <form method="POST" action="/admin/modify-product/<%= product._id %>">
+            <div class="product-image">
+                <img src="<%= product.image %>" alt="<%= product.name %>">
+            </div>
+
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" value="<%= product.name %>" required>
+
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" id="price" name="price" value="<%= product.price %>" required>
+
+            <label for="size">Size:</label>
+            <input type="text" id="size" name="size" value="<%= product.size %>" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Unisex" <%= product.gender === 'Unisex' ? 'selected' : '' %>>Unisex</option>
+                <option value="Male" <%= product.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                <option value="Female" <%= product.gender === 'Female' ? 'selected' : '' %>>Female</option>
+            </select>
+
+            <label for="age">Age:</label>
+            <select id="age" name="age" required>
+                <option value="Kids" <%= product.age === 'Kids' ? 'selected' : '' %>>Kids</option>
+                <option value="Adults" <%= product.age === 'Adults' ? 'selected' : '' %>>Adults</option>
+                <option value="All Ages" <%= product.age === 'All Ages' ? 'selected' : '' %>>All Ages</option>
+            </select>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <% allowedTypes.forEach(type => { %>
+                    <option value="<%= type %>" <%= product.type === type ? 'selected' : '' %>><%= type %></option>
+                <% }) %>
+            </select>
+
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" value="<%= product.image %>" required>
+
+            <button type="submit">Update Product</button>
+        </form>
+
+        <a href="/admin" class="return-btn">Return to Admin Page</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+[{
+  "_id": {
+    "$oid": "67647384b4079b40a8178467"
+  },
+  "name": "tente",
+  "price": 550,
+  "size": "5 people",
+  "description": "La tente Wawona 4 pour quatre personnes très appréciée, nommée d’après un séquoia emblématique, a été remise à jour. The North Face est passé d’une construction à paroi simple à une construction à double paroi",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Tent (with stakes and guylines)",
+  "image": "/images/tente.png"
+},
+{
+  "_id": {
+    "$oid": "67647384b4079b40a8178468"
+  },
+  "name": "Himalayan One-Piece Suit - Men's",
+  "price": 2499,
+  "size": "Adult",
+  "description": "Weather-proof down-insulated one-piece suit for arctic adventures\r\nWaterproof, breathable membrane blocks out precipitation\r\nGoose down fill and synthetic insulation delivers lofted, toasty warmth\r\nDraft tube helps defend against frigid winds",
+  "gender": "Unisex",
+  "age": "Adults",
+  "type": "Camping Clothes",
+  "image": "/images/suit.jpg"
+},
+{
+  "_id": {
+    "$oid": "67647384b4079b40a8178469"
+  },
+  "name": "tente 2",
+  "price": 560,
+  "size": "9 people",
+  "description": "tente parfaite pour utilisation reguliére",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Tent (with stakes and guylines)",
+  "image": "/images/tente2.png"
+},
+{
+  "_id": {
+    "$oid": "67647384b4079b40a817846a"
+  },
+  "name": "Bouteille Eau Canac",
+  "price": 45,
+  "size": "750 ml",
+  "description": "Pratique et durable, la bouteille d'eau Canac est idéale pour vous accompagner dans toutes vos activités, que ce soit au travail, en plein air ou à la maison",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Water Filter or Water Purification Tablets",
+  "image": "/images/canac.jpg"
+},
+{
+  "_id": {
+    "$oid": "67647384b4079b40a817846b"
+  },
+  "name": "Bouteille Eau Canac",
+  "price": 55,
+  "size": "750 ml",
+  "description": "Pratique et durable, la bouteille d'eau Canac est idéale pour vous accompagner dans toutes vos activités, que ce soit au travail, en plein air ou à la maison",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Water Filter or Water Purification Tablets",
+  "image": "/images/Canac1.jpg"
+},
+{
+  "_id": {
+    "$oid": "67647384b4079b40a817846c"
+  },
+  "name": "Matelas de Camping",
+  "price": 250,
+  "size": "2 mètres cube",
+  "description": "Offrez-vous un confort optimal lors de vos aventures en plein air avec le matelas de camping Canac. Conçu pour répondre aux besoins des campeurs les plus exigeants, ce matelas allie praticité",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Sleeping Pad or Air Mattress",
+  "image": "/images/matress.jpg"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a8178473"
+  },
+  "name": "tente 2",
+  "price": 560,
+  "size": "9 people",
+  "description": "Tente parfaite pour utilisation régulière.",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Tent (with stakes and guylines)",
+  "image": "/images/tente2.png"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a8178476"
+  },
+  "name": "Matelas de Camping Canac",
+  "price": 350,
+  "size": "2 mètres cube",
+  "description": "Offrez-vous un confort optimal lors de vos aventures en plein air avec le matelas de camping Canac. Conçu pour répondre aux besoins des campeurs les plus exigeants, ce matelas allie praticité.",
+  "gender": "Unisex",
+  "age": "Kids",
+  "type": "Sleeping Pad or Air Mattress",
+  "image": "/images/matress3.jpg"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a8178477"
+  },
+  "name": "North Face Suite",
+  "price": 300,
+  "size": "XL",
+  "description": "Découvrez l'alliance parfaite entre confort, style et fonctionnalité avec l'ensemble North Face. Conçu pour affronter toutes les conditions, cet ensemble est le choix idéal pour vos aventures en plein air ou vos moments de détente au quotidien.",
+  "gender": "Unisex",
+  "age": "Adults",
+  "type": "Camping Clothes",
+  "image": "/images/suit4.jpg"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a8178478"
+  },
+  "name": "First Aid Kit",
+  "price": 49,
+  "size": "5 L",
+  "description": "Ensure safety and peace of mind on all your adventures with a comprehensive First Aid Kit. Designed for versatility and reliability, this kit equips you with essential medical supplies for emergencies at home, on the road, or in the great outdoors.",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "First Aid Kit",
+  "image": "/images/first.jpg"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a8178479"
+  },
+  "name": "Headlamp",
+  "price": 40,
+  "size": "All sizes",
+  "description": "Light your way hands-free with our high-performance headlamp, perfect for camping, hiking, running, or any outdoor adventure.",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Headlamp or Flashlight (with extra batteries)",
+  "image": "/images/head.jpg"
+},
+{
+  "_id": {
+    "$oid": "676473eab4079b40a817847a"
+  },
+  "name": "Sturdy Hiking Boots",
+  "price": 199,
+  "size": "42 EUR",
+  "description": "Conquer any trail with confidence in our sturdy hiking boots, designed for durability, comfort, and performance.",
+  "gender": "Unisex",
+  "age": "Adults",
+  "type": "Sturdy Hiking Boots or Shoes",
+  "image": "/images/boot.jpg"
+},
+{
+  "_id": {
+    "$oid": "6764748131ac36041fc0516f"
+  },
+  "name": "Tente de neige",
+  "price": {
+    "$numberDecimal": "3600"
+  },
+  "size": "4 people",
+  "description": "Built on decades of research, rigorous lab and field testing, and loads feedback from TNF athletes, The North Face 2-Meter Dome Tent stands alone as the quintessential mountaineering palace for surviving the world's most extreme environments",
+  "gender": "Unisex",
+  "age": "All Ages",
+  "type": "Tent (with stakes and guylines)",
+  "image": "/images/tente3.jpg",
+  "__v": 0
+}]

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AZtlxrgy5cimjcpn9JlH5lkzP590VwPvh_hrloYJLHDyDPQsJQP__9bqkDfqm6XCipAgVd8s3SSjnIwU&currency=USD"></script>
+    <style>
+              body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f4f4;
+    background: url('/images/cart.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+/* Navbar Styling */
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: rgba(255, 223, 0, 0.9); /* Semi-transparent yellow */
+    border-bottom: 2px solid rgba(255, 200, 0, 0.7);
+    padding: 15px 30px;
+    z-index: 10;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-container .welcome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #ff5722; /* Orange on hover */
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    margin-top: 80px;
+    color: #f0f8f9;
+}
+
+/* Cart List */
+.cart-list {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cart Item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Cart Item Details */
+.cart-item-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.cart-item-details strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-item-details span {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Cart Item Actions */
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.cart-item-actions button:hover {
+    opacity: 0.9;
+}
+
+/* Quantity Buttons */
+.cart-item-actions .decrease-quantity,
+.cart-item-actions .increase-quantity {
+    background-color: #ffc107; /* Yellow */
+    color: #000;
+}
+
+.cart-item-actions .decrease-quantity:hover,
+.cart-item-actions .increase-quantity:hover {
+    background-color: #e0a800; /* Darker yellow */
+}
+
+/* Remove Button */
+.cart-item-actions .remove-item {
+    background: #dc3545; /* Red */
+    color: #fff;
+}
+
+.cart-item-actions .remove-item:hover {
+    background: #b02a37; /* Darker red */
+}
+
+/* Total Price */
+.total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar-container">
+        <div class="welcome-container">
+            <i class="fas fa-user-circle"></i>
+            <span class="welcome">Welcome, <%= userName %></span>
+        </div>
+      <div class="navbar">
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/user"><i class="fas fa-box"></i> Products</a>
+    <a href="/user/cart/<%= userId %>"><i class="fas fa-shopping-cart"></i> Cart</a>
+</div>
+
+    </div>
+
+    <div>
+        <h1 style="text-align: center;">Your Cart</h1>
+        <div class="cart-list" id="cart-list">
+            <% if (cartItems.length === 0) { %>
+                <p>Your cart is empty.</p>
+            <% } else { %>
+                <% cartItems.forEach(item => { %>
+                    <!-- Update: Use item.product_id as the data-id -->
+                    <div class="cart-item" data-id="<%= item.product_id._id %>">
+                        <img src="<%= item.product_id.image %>" alt="<%= item.product_id.name %>">
+                        <div class="cart-item-details">
+                            <strong><%= item.product_id.name %></strong>
+                            <p>Price: $<%= item.product_id?.price ? Number(item.product_id.price).toFixed(2) : '0.00' %></p>
+                            <p>Total: $<%= (item.quantity * (item.product_id.price || 0)).toFixed(2) %></p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="decrease-quantity">-</button>
+                            <span class="quantity"><%= item.quantity %></span>
+                            <button class="increase-quantity">+</button>
+                            <button class="remove-item">Remove</button>
+                        </div>
+                    </div>
+                <% }); %>
+                <div class="total">
+                    Total: $<span id="total-price"><%= totalPrice.toFixed(2) %></span>
+                    <div id="paypal-button-container" style="margin-top: 10px;"></div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cartList = document.getElementById("cart-list");
+    const totalPriceElement = document.getElementById("total-price");
+
+    const updateTotalPrice = () => {
+        let total = 0;
+        const cartItems = document.querySelectorAll(".cart-item");
+
+        cartItems.forEach(item => {
+            const quantity = parseInt(item.querySelector(".quantity").textContent);
+            const price = parseFloat(item.querySelector(".cart-item-details p").textContent.replace("Price: $", ""));
+            total += quantity * price;
+        });
+
+        totalPriceElement.textContent = total.toFixed(2);
+    };
+
+    const updateCartOnServer = async (productId, quantity) => {
+        console.log('Sending update request to server:', { productId, quantity });
+
+        try {
+            const response = await fetch('/user/cart/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId, quantity }),
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                console.error('Failed to update cart item:', result.message);
+            } else {
+                console.log('Cart item updated successfully:', result.cartItem);
+            }
+        } catch (error) {
+            console.error('Error updating cart item:', error);
+        }
+    };
+
+    const removeCartItemFromServer = async (productId) => {
+        console.log('Sending remove request to server:', { productId });
+
+        try {
+            const response = await fetch('/user/cart/remove', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId }),
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                console.error('Failed to remove cart item:', result.message);
+            } else {
+                console.log('Cart item removed successfully:', result);
+            }
+        } catch (error) {
+            console.error('Error removing cart item:', error);
+        }
+    };
+
+    cartList.addEventListener("click", async (event) => {
+        const target = event.target;
+
+        if (target.classList.contains("increase-quantity")) {
+            const cartItem = target.closest(".cart-item");
+            const quantityElement = cartItem.querySelector(".quantity");
+            const productId = cartItem.dataset.id;
+            let quantity = parseInt(quantityElement.textContent);
+            quantity++;
+            quantityElement.textContent = quantity;
+
+            await updateCartOnServer(productId, quantity);
+
+            const price = parseFloat(cartItem.querySelector(".cart-item-details p").textContent.replace("Price: $", ""));
+            const totalElement = cartItem.querySelector(".cart-item-details p:nth-child(3)");
+            totalElement.textContent = `Total: $${(quantity * price).toFixed(2)}`;
+
+            updateTotalPrice();
+        }
+
+        if (target.classList.contains("decrease-quantity")) {
+            const cartItem = target.closest(".cart-item");
+            const quantityElement = cartItem.querySelector(".quantity");
+            const productId = cartItem.dataset.id;
+            let quantity = parseInt(quantityElement.textContent);
+
+            if (quantity > 1) {
+                quantity--;
+                quantityElement.textContent = quantity;
+
+                await updateCartOnServer(productId, quantity);
+
+                const price = parseFloat(cartItem.querySelector(".cart-item-details p").textContent.replace("Price: $", ""));
+                const totalElement = cartItem.querySelector(".cart-item-details p:nth-child(3)");
+                totalElement.textContent = `Total: $${(quantity * price).toFixed(2)}`;
+
+                updateTotalPrice();
+            }
+        }
+
+        if (target.classList.contains("remove-item")) {
+            const cartItem = target.closest(".cart-item");
+            const productId = cartItem.dataset.id;
+
+            await removeCartItemFromServer(productId);
+
+            cartItem.remove();
+
+            updateTotalPrice();
+        }
+    });
+
+    updateTotalPrice();
+});
+
+  
+
+</script>
+
+<script>
+
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                const totalPrice = document.getElementById('total-price').textContent.trim();
+                if (!totalPrice || isNaN(totalPrice)) {
+                    alert("Invalid total price. Please refresh and try again.");
+                    throw new Error("Invalid total price.");
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: totalPrice }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    window.location.href = "/thankyou";
+                });
+            },
+            onError: function (err) {
+                console.error("PayPal Error: ", err);
+                alert("An error occurred during the transaction. Please try again.");
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
